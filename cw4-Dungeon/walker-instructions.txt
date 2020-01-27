@@ -1,0 +1,41 @@
+Dungeon walker helper program
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Building
+--------
+
+To build the program, download the "walker.hs" file to cs-linux.  Compile it with the command:
+
+   ghc walker.hs -o walker
+
+If it works correctly you should see something like this in the terminal:
+
+   [zlizpd3@cs-linux 1617-pga]$ ghc walker.hs -o walker
+   [1 of 1] Compiling Main             ( walker.hs, walker.o )
+   Linking walker ...
+   [zlizpd3@cs-linux 1617-pga]$ 
+
+This will create en executable called "walker" that you can run.
+
+
+Running
+-------
+
+The program takes a single command-line argument which is the path to the dungeon file.  This should be the same path that you give the your coursework program to read from.  There is not default in the walker program; you must always supply the file path.
+
+The program will then accept position coordinates from standard input until there are no more.  The format the program accepts is the same as the format your coursework program should output - one coordinate per line, each number separated by a comma.
+
+The program will then print the coordinate it has read in and display the map with the player (represented by the "@" character) at that coordinate position.  It will continue to do so, once for each input line, until the end of input.  It will print a message at the end to indicate this.
+
+You can direct your coursework program's output into the input of this walker program by using a Unix feature known as pipes.  Running the following command will pipe the output of the first program (your coursework) into the input of the second program (this viewer) by using the vertical bar symbol (|) between the two commands:
+
+[zlizpd3@cs-linux 1617-pga]$ ./dungeon test1.map 2 1 | ./walker test1.map
+
+When doing this, none of your coursework program's output will appear on the screen.  It will all be send to the walker program as input.  This means if you have any other output, such as debugging print statements, these will be sent to the walker program and it will not work (as it expects only coordinates).
+
+Bugs
+----
+
+This viewer is not designed to be particularly robust.  It is just a quick tool that might be useful for you instead of having to cross-check all program output by hand.  YOU COURSEWORK PROGRAM MUST MEET THE COURSEWORK SPECIFICATION, EVEN IF THIS VIEWER PROGRAM SHOWS INCORRECT INFORMATION.  Use at your own risk.  You should still check your program output by hand until you are confident that it produces correct output.  This viewer is more useful when you are trying to understand how your algorithm is picking the paths it does.
+
+END

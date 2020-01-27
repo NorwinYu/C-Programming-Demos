@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)http://moodle.nottingham.ac.uk/pluginfile.php/3208063/mod_resource/content/2/ae1pga-cw3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <title>AE1PGA Coursework 3 - Phone number directory</title>
+    <meta name="description" content="AE1PGA Coursework 3">
+    <meta name="author" content="Matthew Pike and Paul Dempster">
+    <style>
+      h2, h3 {
+      text-decoration: underline;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <h1>AE1PGA Coursework 3  - Phone number directory</h1>
+
+
+    <h2>Introduction</h2>
+
+    <p>This is the third AE1PGA Coursework.  It is worth <b>30% of the module mark</b>.  It requires you to write an interactive, menu-driven program that acts as a phone number directory program.
+      The deadline for this exercise is <b>16:00 on Wednesday 23rd of November 2016</b>.
+    </p>
+
+    <p><strong>Read the entire document before beginning the exercise.</strong></p>
+
+    <p>If you have any questions about this exercise, please ask in the Q&amp;A forum on Moodle, after a lecture, in a lab, or during the advertised office hours.
+      Do not post your program or parts of your program to Moodle as you are not allowed to share your coursework programs with other students.
+      
+  If any questions requires this exercise to be clarified then this 
+document will be updated and everyone will be notified via Moodle.
+    </p>
+
+    <h3>Version History</h3>
+    <ul>
+      <li>Version 1.0 - 2016-10-20 - Original version.</li>
+      <li><i>Version 1.1 - 2016-11-11 - Current version</i>
+	<ul>
+	  <li>Added sentence to the end of the "Modify number" option to state it is an error to modify a phone number to another number that already exists.
+	</li></ul>
+
+    </li></ul>
+
+    
+<h2>Submission</h2>
+
+    <p>You must submit a single C source code file containing all your code for this exercise.  This file must be called <code>phone.c</code>
+ and must not require any other files outside of the standard C headers 
+which are always available.  The first line of the file should be a 
+comment which contains your student ID number, username, and full name, 
+of the form:<br>
+      <code style="padding-left:5em;">// 6512345 zy12345 Joe Blogs</code>
+    </p>
+
+    <p>The file must compile without warnings or errors when I use the command<br>
+      <code style="padding-left:5em;">gcc -std=c99 -lm -Wall -Wformat -Wwrite-strings phone.c -o phone</code><br>
+      This command will be run on our Linux server <code>cs-linux</code>.
+  If it does not compile, for any reason, then you will lose all the 
+marks for testing (common reasons in the past have been submitting a 
+file with the wrong filename, or developing your solution on your 
+personal computer without having tested it on our Linux server).  If the
+ file compiles but has warnings then you will lose some marks for not 
+correcting the warnings.
+    </p>
+
+    <p>The completed source code file should be uploaded to the Coursework 3 Submission link on the AE1PGA Moodle page.  You may submit 
+as many times as you wish before the deadline (the last submission 
+before the deadline will be used).  After the deadline has passed, if 
+you have already submitted your exercise then you will not be able to 
+submit again.  If you have not already submitted then you will be 
+allowed to submit <b>once</b>.
+    </p>
+
+    <p>Remember that you can only access the Linux server from the 
+designated labs in SEB and SSB and that these labs are also heavily 
+booked for teaching.  <b>Do not</b> wait until the last moment to submit
+ as you may find you cannot get into any of the rooms to access your 
+source code files.  Not being able to access the machine due to lack of 
+planning is <b>not</b> an extenuating circumstance.</p>
+
+    <p><b>Late submissions</b>: AE1PGA late submission policy is <b>different</b> from the standard university policy.  Late submissions will lose 5 percentage points <b>per hour</b>,
+ rounded up to the next whole hour.  This is to better represent the 
+large benefit a small amount of extra time can give at the end of a 
+programming exercise.  No late submissions will be accepted more than 24
+ hours after the exercise deadline.  If you have extenuating 
+circumstances you should file them before the deadline.</p>
+
+    <h2>Plagiarism</h2>
+    <b>
+    <p>You should complete this coursework on your own.  Anyone 
+suspected of plagiarism will be investigated and punished in accordance 
+with the university policy on plagiarism (see your student handbook and 
+the University Quality Manual). This may include a mark of zero for this
+ coursework.</p>
+
+    <p>You should write the source code required for this assignment 
+yourself. If you use code from other sources (books, web pages, etc), 
+you should use comments to acknowledge this (and marks will be heavily 
+      adjusted down accordingly).
+      <i>The only exception to this is the prompt_str function developed
+	during the lectures; you may use this, with or without modification,
+	without penalty.
+      </i>
+    </p>
+
+    <p>You must not copy or share source code with other students.  You 
+must not work together on your solution.  You can informally talk about 
+higher-level ideas but not to a level of detail that would allow you all
+ to create the same source code.
+    </p>
+
+    <p>Remember, it is quite easy for experienced lecturers to spot 
+plagiarism in source code.  If you are having problems you should ask 
+questions rather then plagiarize.  If you are not able to complete the 
+exercise then you should still submit your incomplete program as that 
+will still get you some of the marks for the parts you have done (but 
+make sure your incomplete solution compiles and partially runs!).
+      </p>
+    </b>
+<h2>Marking</h2>
+
+    <p>The marking scheme will be as follows:
+      </p><ul>
+	<li><i>Tests (60%):</i> Your program should correctly implement the 
+task requirements.  A number of tests will be run against your program 
+with different input data designed to test if this is the case for each 
+individual requirement.  The tests themselves are secret but general 
+examples of the tests might be:
+	  <ul>
+	    <li>Does the program work with the example I/O in the question?
+	    </li><li>Does the program work with typical valid input?
+	    </li><li>Does the program correctly deal with input around boundary values?
+	    </li><li>Does the program correctly deal with invalid values?
+	    </li><li>Does the program handle errors with resources not being available (eg, malloc failing or a filename being wrong)?
+	    </li><li>Does the program output match the required format?
+	  </li></ul>
+	  As noted in the submission section, <b>if your program does not compile then you will lose all testing marks</b>.
+	  
+	</li><li><i>Appropriate use of language features (30%):</i>
+	  Your program should use the appropriate C language features in your 
+solution.   You can use any language features or techniques that you 
+have seen in the course, or you have learned on your own, as long as 
+they are appropriate to your solution.  Examples of this might be:
+	  <ul>
+	    <li>If you have many similar values, are you using arrays (or equivalent) instead of many individual variables?
+	    </li><li>Have you broken your program down into separate functions?
+	    </li><li>Are all your function arguments being used?
+	    </li><li>If your functions return values, are they being used?
+	    </li><li>If you have complex data, are you using structures?
+	    </li><li>Are you using loops to avoid repeating many lines of code?
+	    </li><li>Are your if/switch statements making a difference, or is the conditions always true or false making the statement pointless?
+	  </li></ul>
+
+	</li><li><i>Source code formatting (10%):</i>
+	  Your program should be correctly formatted and easy to understand by a
+ competent C programmer.  This includes, but is not limited to, 
+indentation, bracketing, variable/function naming, and use of comments. 
+ See the lecture notes, and the example programs 
+for examples of correctly formatting programs.
+
+      </li></ul>
+Late Submissions: see submission section above.
+      <p></p>
+
+      <h2>Task</h2>
+
+    <p>
+      Your task is to write an interactive, menu-driven program that will act as a phone number directory.  As we have not covered saving and loading data from files, the program will not remember any data between program executions - this is intended.  The program starts with an empty phone directory.
+    </p>
+
+    <p>
+      When the program runs, it should display the following main menu to the user and prompt them to enter a menu option:
+      </p><pre><code>
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 
+      </code></pre>
+      If the user enters the number of an option, the program should perform that option then return to the main menu to let the user select another option.  If the user enters something which is not a valid option then the program should print <code>"Unknown option!"</code> then print the main menu again for the user to select another option.  The user may enter any input at this, or any other prompt, in the program, terminated by pressing the return key (newline character).  Your program must deal with this appropriately, accepting valid input and rejecting invalid input according to the particular prompt.
+    <p></p>
+
+    <p>
+      If the user selects the "Print directory" option, then the program should print details of every entry in the directory.  Each entry consists of a name, a phone number, and a department name.  Each one of these fields is a single-line string of arbitrary length.  Each entry should be printed on a separate line.  The phone number should be printed first, then a tab, then the name, then a space and the department name in parenthesis.  The entries should be printed in the order they were entered into the directory.
+      If there are no entries currently in the directory then nothing should be printed by this option.
+    </p>
+
+    <p>
+      If the user selects the "Add number" option, then the program should allow the user to enter a new number that is added to the end of the directory.  The user should enter the name (with the prompt "Name: "), and the phone number (with the prompt "Number: "), and the department (wit the prompt "Department: ") in that order.  Once the user has entered all three fields, the program should check if an entry with that phone number already exists.  If so, it should print the error message "Entry already exists, ignoring duplicate entry." and return to the menu without adding the new entry.  If the user entered a zero-length string for the phone number, the program should print the error message "Phone number cannot be empty, ignoring entry." and return to the menu without adding the new entry.  If the number does not already exist, a new entry should be created with the appropriate details and added to the end of the directory.
+    </p>
+
+    <p>
+      If the user selects the "Modify number" option, then the program should allow the user to modify the details of an existing number in the directory.  It should prompt the user to enter the phone number of the entry to modify (with the prompt <code>"Enter phone number to modify: "</code>).  If a matching entry does not exist, the program should print <code>"Entry does not exist."</code> and return to the main menu.  If it does exist, then the program should prompt the user to enter the new value for the name, number, and department field, in that order.  For each field, if the user presses return without entering any other characters, the program should keep the existing value of the field.  Otherwise, the field should be updated to match the new value entered by the user.  The prompt for each of these should be <code>"Enter new XXX (return to keep [YYY]): "</code>, where XXX is either <code>"name"</code>, <code>"number"</code>, or <code>"department"</code> depending on which field is being entered, and YYY is replaced with the current value of that field.  As with the "Add number" option, the phone number cannot be zero-length; if it is, print the same error message and return to the main menu without modifying any of the fields of this entry.  The equivalent error should also happen if the new phone number being entered is a duplicate of one that already exists in the directory (unless it is the current number being explicitly re-typed, that is allowed).  These checks should happen after all 3 fields have been input.
+    </p>
+
+    <p>
+      If the user selects the "Delete number" option, then the program should allow the user to delete an existing entry in the directory.  The program should prompt the user to enter the phone number to delete with the prompt "Enter phone number to delete (return to cancel): ".  If the user presses return without entering any other characters, then this option should do nothing else and return to the main menu.
+      If the user entered a value, the program should delete the entry in the directory whose number matches the value the user entered.  If not such entry exists, this option should do nothing else and return to the main menu.
+      If the program deletes an entry, then any dynamically allocated memory associated with the entry that is no longer needed should be freed.
+    </p>
+
+    <p>
+      If the user selects the "Search" option, then the program should allow the user to enter a value to search the directory for.  The program should allow the user to enter a single-line string (with the prompt "Search: ").  If the user just presses return, no matches should be found.  If the user enters a value, the program should search the directory for matching entries and print their details.  An entry matches if any of its fields (name, number, department) contain the value entered by the user as a substring.  The search is case-sensitive.  Matching entries should be printed in the same way as in the "Print directory" menu option.  If there are no matches, nothing should be printed.
+    </p>
+
+    <p>
+      If the user selects the "Quit" option, the program should exit.  Before exiting, the program should explicitly free any memory it has allocated that it hasn't yet freed.  (Note that most operating systems will recover all unfreed memory from a program when it exits but this exercise requires you to free allocated memory yourself in order to demonstrate you can do it).
+    </p>
+
+    <p>
+      If the program needs to exit because it cannot allocate memory, it should print the error message "Unable to allocate memory." and exit with exit code -1.
+      If the program needs to exit for any other reason, print an appropriate error message and exit with exit code -2.
+    </p>
+    
+
+<h2>Example input/output</h2>
+
+Example:
+<pre>[zlizpd3@cs-linux cw2]$ ./phone
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 8
+Unknown option!
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: dg reg erg e
+Unknown option!
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 2
+Name: Paul
+Number: 8888
+Department: Computer Science
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+8888	Paul (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 2
+Name: John Cartlidge
+Number: +86(0)5748818000-1234
+Department: Computer Science
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+8888	Paul (Computer Science)
++86(0)5748818000-1234	John Cartlidge (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 2
+Name: Matt
+Number: 8043
+Department: Computer Science
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+8888	Paul (Computer Science)
++86(0)5748818000-1234	John Cartlidge (Computer Science)
+8043	Matt (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 3
+Enter phone number to modify: 98086558
+Entry does not exist.
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 3
+Enter phone number to modify: 8043
+Enter new name (return to keep [Matt]): Matthew Pike
+Enter new number (return to keep [8043]): 
+Enter new department (return to keep [Computer Science]): 
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+8888	Paul (Computer Science)
++86(0)5748818000-1234	John Cartlidge (Computer Science)
+8043	Matthew Pike (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 4
+Enter phone number to delete (return to cancel): John Cartlidge
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+8888	Paul (Computer Science)
++86(0)5748818000-1234	John Cartlidge (Computer Science)
+8043	Matthew Pike (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 4
+Enter phone number to delete (return to cancel): +86(0)5748818000-1234
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+8888	Paul (Computer Science)
+8043	Matthew Pike (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 5
+Search: John
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 5
+Search: Computer
+8888	Paul (Computer Science)
+8043	Matthew Pike (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 5
+Search: Pa
+8888	Paul (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 4
+Enter phone number to delete (return to cancel): 
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 1
+8888	Paul (Computer Science)
+8043	Matthew Pike (Computer Science)
+1) Print directory
+2) Add number
+3) Modify number
+4) Delete number
+5) Search
+6) Quit
+Option: 6
+[zlizpd3@cs-linux cw2]$ 
+</pre>
+
+<h2>Hints</h2>
+
+<ul>
+  <li>Remember to free any memory which you no longer need.  Your program should not have any memory leaks (dynamically allocated areas of memory which are no longer reachable).  You will need to consider this in many places in your program, not just the delete option.</li>
+  <li>Prompts must be able to deal with arbitrary-length user input, including white-space and empty inputs.</li>
+</ul>
+
+<b>END</b>
+
+  
+
+
+<audio controls="controls" style="display: none;"></audio><div id="cli_dialog_div"></div></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>
